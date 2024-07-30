@@ -2,21 +2,15 @@ import Product from "@/libs/models/Product";
 import { connectMongoDB } from "@/libs/MongoConnect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(request: NextRequest, URLParams: any) {
+export async function DELETE(request: NextRequest, URLParams: any) {
   try {
-    const body = await request.json();
     const id = URLParams.params.id;
-    const { name, category, price } = body;
 
     await connectMongoDB();
 
-    const data = await Product.findByIdAndUpdate(id, {
-      name,
-      category,
-      price,
-    });
+    await Product.findByIdAndDelete(id);
 
-    return NextResponse.json({ msg: "Product updated Successfully", data });
+    return NextResponse.json({ msg: "Product deleted successfully" });
   } catch (error) {
     return NextResponse.json(
       {

@@ -1,6 +1,10 @@
 import { IProduct } from "@/app/admin/dashboard/page";
+import { setLoading } from "@/redux/features/loadingSlice";
 import { setProduct } from "@/redux/features/productSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { formatNumberWithCommas } from "@/utils/functions";
+import { makeToast } from "@/utils/helper";
+import axios from "axios";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { CiEdit } from "react-icons/ci";
@@ -27,8 +31,28 @@ const ProductRow = ({
   };
 
   const onDelete = () => {
-    // dispatch(setProduct(product))
-    // setOpenPopup(true)
+    dispatch(setLoading(true));
+
+    const payLoad = {
+      fileKey: product.fileKey,
+    };
+
+    axios
+      .delete("/api/uploadthing", { data: payLoad })
+      .then((res) => {
+        console.log(res.data);
+
+        axios
+          .delete(`/api/delete_product/${product._id}`)
+          .then((res) => {
+            console.log(res.data);
+            makeToast("Product deleted successfully");
+            setUpdateTable((prevState) => !prevState);
+          })
+          .catch((err) => console.log("mongo-delete-err", err))
+          .finally(() => dispatch(setLoading(false)));
+      })
+      .catch((err) => console.log("delete-err", err));
   };
 
   return (
@@ -39,7 +63,7 @@ const ProductRow = ({
       <td>
         <div>{product.name}</div>
       </td>
-      <td>NGN {product.price}</td>
+      <td>NGN {formatNumberWithCommas(product.price)}</td>
       <td className="py-2">
         <Image
           src={product.imgSrc}
@@ -50,14 +74,14 @@ const ProductRow = ({
       </td>
       <td>
         <div className="text-2xl flex items-center gap-2 text-gray-600">
-            <CiEdit 
+          <CiEdit
             className="cursor-pointer hover:text-black"
             onClick={onEdit}
-            />
-            <RiDeleteBin5Line 
+          />
+          <RiDeleteBin5Line
             className="text-[20px] cursor-pointer hover:text-red-600"
             onClick={onDelete}
-            />
+          />
         </div>
       </td>
     </tr>

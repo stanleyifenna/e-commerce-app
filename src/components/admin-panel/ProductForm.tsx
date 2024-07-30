@@ -31,7 +31,7 @@ const ProductForm = () => {
     dispatch(setLoading(true));
 
     axios
-      .post("api/add_product", payLoad)
+      .post("/api/add_product", payLoad)
       .then((res) => {
         makeToast("Product added SUccessfully!");
         setPayLoad({
@@ -66,7 +66,6 @@ const ProductForm = () => {
             imgSrc: res[0]?.url,
             fileKey: res[0]?.key,
           });
-    
         }}
         onUploadError={(error: Error) => {
           // Do something with the error.
