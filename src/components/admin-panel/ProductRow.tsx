@@ -75,7 +75,7 @@ const ProductRow = ({
       <td>
         <div className="text-2xl flex items-center gap-2 text-gray-600">
           <CiEdit
-            className="cursor-pointer hover:text-black"
+            className="cursor-pointer hover:text-[green]"
             onClick={onEdit}
           />
           <RiDeleteBin5Line
