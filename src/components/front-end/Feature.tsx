@@ -28,7 +28,7 @@ const data = [
 
 const Feature = () => {
   return (
-    <div data-aos="fade-up" className="container grid gap-1 sm:grid-cols-2 lg:grid-cols-4 mt-8">
+    <div className="container grid gap-1 sm:grid-cols-2 lg:grid-cols-4 mt-8">
       {data.map((item) => (
         <FeatureCard
           key={item.title}

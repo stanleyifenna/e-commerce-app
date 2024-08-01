@@ -4,8 +4,8 @@ import "./globals.css";
 import AuthProvider from "@/components/admin-panel/AuthProvider";
 import App from "./App";
 import { Toaster } from "react-hot-toast";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
 
 const inter = Inter({ subsets: ["latin"] });
 //AOS.init();
