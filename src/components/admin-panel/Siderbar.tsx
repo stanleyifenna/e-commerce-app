@@ -18,16 +18,16 @@ const menus = [
     icon: <RiShoppingCartLine />,
     href: "/admin/products",
   },
-  {
-    title: "Accounts",
-    icon: <MdManageAccounts />,
-    href: "#",
-  },
-  {
-    title: "Transactions",
-    icon: <GrTransaction />,
-    href: "#",
-  },
+  // {
+  //   title: "Accounts",
+  //   icon: <MdManageAccounts />,
+  //   href: "#",
+  // },
+  // {
+  //   title: "Transactions",
+  //   icon: <GrTransaction />,
+  //   href: "#",
+  // },
   {
     title: "Analytics",
     icon: <IoAnalytics />,
