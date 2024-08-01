@@ -1,6 +1,7 @@
 import { useAppSelector } from "@/redux/hooks";
 import { RxCross1 } from "react-icons/rx";
 import CartProduct from "./CartProduct";
+import { formatWithCommas } from "@/utils/functions";
 
 const Cart = ({ setShowCart }: any) => {
   const products = useAppSelector((state) => state.cartReducer);
@@ -36,7 +37,7 @@ const Cart = ({ setShowCart }: any) => {
 
         <div className="flex justify-between items-center font-medium text-xl py-4 ">
           <p>Total:</p>
-          <p>NGN{getTotal()}.00</p>
+          <p>NGN{formatWithCommas(getTotal())}.00</p>
         </div>
 
         <button className="bg-[#757474] text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4">
